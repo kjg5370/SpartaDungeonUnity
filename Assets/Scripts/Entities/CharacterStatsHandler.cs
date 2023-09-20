@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,12 @@ using UnityEngine;
 public class CharacterStatsHandler : MonoBehaviour
 {
     [SerializeField] private CharacterStats baseStats;
-    public CharacterStats CurrentStates { get; private set; }
+    public CharacterStats CurrentStats { get; private set; }
+
+    public event Action OnLevelUP;
+
     public List<CharacterStats> statsModifiers = new List<CharacterStats>();
+
 
     private void Awake()
     {
@@ -21,11 +26,24 @@ public class CharacterStatsHandler : MonoBehaviour
             statSO = Instantiate(baseStats.statSO);
         }
 
-        CurrentStates = new CharacterStats { statSO = statSO };
+        CurrentStats = new CharacterStats { statSO = statSO };
         // TODO
-        CurrentStates.statsChangeType = baseStats.statsChangeType;
-        CurrentStates.level = baseStats.level;
-        CurrentStates.exp = baseStats.exp; 
-        CurrentStates.gold = baseStats.gold;
+        CurrentStats.statsChangeType = baseStats.statsChangeType;
+        CurrentStats.characterName = baseStats.characterName;
+        CurrentStats.level = baseStats.level;
+        CurrentStats.exp = baseStats.exp;
+        CurrentStats.gold = baseStats.gold;
+
+        while (true)
+        {
+            if(CurrentStats.exp < CurrentStats.level +2)
+            {
+                break;
+            }
+            CurrentStats.exp -= CurrentStats.level + 2;
+            CurrentStats.level++;
+            OnLevelUP?.Invoke();
+        }
+        
     }
 }
