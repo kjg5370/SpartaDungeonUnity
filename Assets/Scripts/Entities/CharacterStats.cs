@@ -3,14 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-    public enum StatsChangeType
-    {
-        Add,
-        Multiple,
-        Override,
-    }
+public enum StatsChangeType
+{
+    Add,
+    Override,
+}
 
-    [Serializable]
+[Serializable]
     public class CharacterStats
     {
         public StatsChangeType statsChangeType;

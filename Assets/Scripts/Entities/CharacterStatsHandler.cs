@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CharacterStatsHandler : MonoBehaviour
@@ -17,6 +18,16 @@ public class CharacterStatsHandler : MonoBehaviour
     {
         UpdateCharacterStats();
     }
+    public void AddStatModifier(CharacterStats statModifier)
+    {
+        statsModifiers.Add(statModifier);
+        UpdateCharacterStats();
+    }
+    public void RemoveStatModifier(CharacterStats statModifier)
+    {
+        statsModifiers.Remove(statModifier);
+        UpdateCharacterStats();
+    }
 
     private void UpdateCharacterStats()
     {
@@ -28,11 +39,19 @@ public class CharacterStatsHandler : MonoBehaviour
 
         CurrentStats = new CharacterStats { statSO = statSO };
         // TODO
-        CurrentStats.statsChangeType = baseStats.statsChangeType;
         CurrentStats.characterName = baseStats.characterName;
-        CurrentStats.level = baseStats.level;
-        CurrentStats.exp = baseStats.exp;
-        CurrentStats.gold = baseStats.gold;
+        UpdateStats((a, b) => b, baseStats);
+        foreach (CharacterStats modifier in statsModifiers.OrderBy(o => o.statsChangeType))
+        {
+            if (modifier.statsChangeType == StatsChangeType.Override)
+            {
+                UpdateStats((o, o1) => o1, modifier);
+            }
+            else if (modifier.statsChangeType == StatsChangeType.Add)
+            {
+                UpdateStats((o, o1) => o + o1, modifier);
+            }
+        }
 
         while (true)
         {
@@ -45,5 +64,25 @@ public class CharacterStatsHandler : MonoBehaviour
             OnLevelUP?.Invoke();
         }
         
+    }
+    private void UpdateStats(Func<float, float, float> operation, CharacterStats newModifier)
+    {
+        CurrentStats.level = (int)operation(CurrentStats.level, newModifier.level);
+        CurrentStats.exp = (int)operation(CurrentStats.exp, newModifier.exp);
+        CurrentStats.gold = (int)operation(CurrentStats.gold, newModifier.gold);
+        if (CurrentStats.statSO == null || newModifier.statSO == null)
+            return;
+        UpdateBattleStats(operation, CurrentStats.statSO, newModifier.statSO);
+    }
+    private void UpdateBattleStats(Func<float, float, float> operation, StatSO currentStat, StatSO newStat)
+    {
+        if (currentStat == null || newStat == null)
+        {
+            return;
+        }
+        currentStat.Atk = operation(currentStat.Atk, newStat.Atk);
+        currentStat.Def = operation(currentStat.Def, newStat.Def);
+        currentStat.Health = operation(currentStat.Health, newStat.Health);
+        currentStat.Critical = operation(currentStat.Critical, newStat.Critical);
     }
 }

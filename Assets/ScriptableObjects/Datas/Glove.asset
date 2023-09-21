@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50bc3e718426b324b9c18fbf64b04c94, type: 3}
-  m_Name: Sword
+  m_Name: Glove
   m_EditorClassIdentifier: 
-  Atk: 30
+  Atk: 0
   Def: 0
   Health: 0
-  Critical: 0
-  displayName: "\uB0A1\uC740 \uAC80"
-  description: "\uAE08\uBC29 \uBD80\uB7EC\uC9C1 \uAC70 \uAC19\uC740 \uAC80\uC774\uB2E4."
-  icon: {fileID: 21300000, guid: 789e518168d493d4396ec984b1b5bcb3, type: 3}
-  statName: Attack
-  statIcon: {fileID: 21300000, guid: 2a5c892bdd014164da633b8c6fd0f246, type: 3}
+  Critical: 15
+  displayName: "\uAC80\uC740\uC7A5\uAC11"
+  description: "\uCC29\uC6A9\uD558\uBA74 \uB530\uB73B\uD560 \uAC83 \uAC19\uB2E4."
+  icon: {fileID: 21300000, guid: 7b7b7063f51899d4ab6475ddb0f94ca9, type: 3}
+  statName: Critical
+  statIcon: {fileID: 21300000, guid: 0389074d1deba1c448d45812db40c0df, type: 3}
