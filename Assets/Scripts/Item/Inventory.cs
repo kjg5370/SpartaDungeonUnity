@@ -23,7 +23,6 @@ public class Inventory : MonoBehaviour
     public Image selectedItemIcon;
     public Image selectedItemStatIcon;
 
-    private CharacterStats statsModifier = new CharacterStats();
     private CharacterStatsHandler statsHandler;
 
     public static Inventory instance;
@@ -96,15 +95,13 @@ public class Inventory : MonoBehaviour
     {
         if (!uiSlots[selectedItemIndex].equipped)
         {
-            statsModifier.statsChangeType = StatsChangeType.Add;
-            statsModifier.statSO = datas[selectedItemIndex];
-            statsHandler.AddStatModifier(statsModifier);
+            statsHandler.AddStatModifier(uiSlots[selectedItemIndex].characterStats);
             uiSlots[selectedItemIndex].equipped = true;
             uiSlots[selectedItemIndex].equipImage.gameObject.SetActive(true); 
         }
         else if(uiSlots[selectedItemIndex].equipped)
         {
-            statsHandler.RemoveStatModifier(statsModifier);
+            statsHandler.RemoveStatModifier(uiSlots[selectedItemIndex].characterStats);
             uiSlots[selectedItemIndex].equipped = false;
             uiSlots[selectedItemIndex].equipImage.gameObject.SetActive(false);
         }

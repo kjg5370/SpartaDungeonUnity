@@ -10,6 +10,7 @@ public class ItemSlotUI : MonoBehaviour
     public Image icon;
     public Image equipImage;
     // Start is called before the first frame update
+    public CharacterStats characterStats;
 
     public int index;
     public bool equipped;
@@ -17,6 +18,8 @@ public class ItemSlotUI : MonoBehaviour
     {
         icon.gameObject.SetActive(true);
         icon.sprite = data.icon;
+        characterStats = new CharacterStats();
+        characterStats.statSO = data;
     }
     public void Clear()
     {
