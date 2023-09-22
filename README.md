@@ -14,7 +14,7 @@
 - 프로젝트 이름: SpartaDungeonUnity
 - 프로젝트 지속기간: 2023.09.19-2023.09.22
 - 개발 엔진 및 언어: Unity & C#
-- 멤버 : 김진
+- 멤버 : 김진규
 ## 설명
 |![image](https://github.com/kjg5370/SpartaDungeonUnity/assets/105926662/cd9d5fd4-e17d-46dc-8848-a26bcaac2ffe)
 |:---:|
