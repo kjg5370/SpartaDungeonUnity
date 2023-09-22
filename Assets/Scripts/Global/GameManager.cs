@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
         Player = GameObject.FindGameObjectWithTag(playerTag);
         _statsHandler = Player.GetComponent<CharacterStatsHandler>();
-        _statsHandler.OnLevelUP += UpdateExpUI;
+        _statsHandler.OnUpdateUI += UpdateUI;
     }
 
     void Start()
@@ -40,12 +40,13 @@ public class GameManager : MonoBehaviour
         levelText.text = _statsHandler.CurrentStats.level.ToString();
         expText.text = $"{_statsHandler.CurrentStats.exp} / {_statsHandler.CurrentStats.level + 2}";
         descriptText.text = jobStatData.Descript;
-        goldText.text = _statsHandler.CurrentStats.gold.ToString();
+        goldText.text = string.Format("{0:#,###}",_statsHandler.CurrentStats.gold);
     }
 
-    private void UpdateExpUI()
+    private void UpdateUI()
     {
         float gauge =_statsHandler.CurrentStats.exp / (float)(_statsHandler.CurrentStats.level + 2);
         expGaugeSlider.value = gauge;
+        goldText.text = string.Format("{0:#,###}", _statsHandler.CurrentStats.gold);
     }
 }

@@ -9,8 +9,11 @@ public class Inventory : MonoBehaviour
 {
     public ItemSlotUI[] uiSlots;
     public ItemData[] datas;
+   
 
     public GameObject EquipUI;
+    public GameObject ShopUI;
+    public GameObject PurchasePopUp;
 
     [Header("Selected Item")]
     private ItemData selectedItem;
@@ -113,5 +116,34 @@ public class Inventory : MonoBehaviour
     {
         EquipUI.SetActive(false);
     }
+    public void OpenShopUI()
+    {
+        ShopUI.SetActive(true);
+        PurchasePopUp.SetActive(false);
+    }
+    public void CloseShopUI()
+    {
+        ShopUI.SetActive(false);
+    }
 
+    public void AddShopItem(ItemData data,CharacterStats stat)
+    {
+        if (statsHandler.CurrentStats.gold >= stat.gold)
+        {
+            int count = 0;
+            for (int i = 0; i < datas.Length; i++)
+            {
+                if (datas[i] != null)
+                    count++;
+            }
+            datas[count] = data;
+            UpdateUI();
+            PurchasePopUp.SetActive(true);
+            statsHandler.AddStatModifier(stat);
+        }
+        else
+        {
+            Debug.Log("골드가 부족합니다.");
+        }
+    }
 }

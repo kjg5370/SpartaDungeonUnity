@@ -7,6 +7,7 @@ public enum StatsChangeType
 {
     Add,
     Override,
+    Sub,
 }
 
 [Serializable]

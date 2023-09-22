@@ -9,7 +9,7 @@ public class CharacterStatsHandler : MonoBehaviour
     [SerializeField] private CharacterStats baseStats;
     public CharacterStats CurrentStats { get; private set; }
 
-    public event Action OnLevelUP;
+    public event Action OnUpdateUI;
 
     public List<CharacterStats> statsModifiers = new List<CharacterStats>();
 
@@ -51,6 +51,10 @@ public class CharacterStatsHandler : MonoBehaviour
             {
                 UpdateStats((o, o1) => o + o1, modifier);
             }
+            else if (modifier.statsChangeType == StatsChangeType.Sub)
+            {
+                UpdateStats((o, o1) => o - o1, modifier);
+            }
         }
 
         while (true)
@@ -61,7 +65,7 @@ public class CharacterStatsHandler : MonoBehaviour
             }
             CurrentStats.exp -= CurrentStats.level + 2;
             CurrentStats.level++;
-            OnLevelUP?.Invoke();
+            OnUpdateUI?.Invoke();
         }
         
     }

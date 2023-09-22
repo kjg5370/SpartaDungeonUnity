@@ -11,4 +11,5 @@ public class ItemData : StatSO
     public Sprite icon;
     public string statName;
     public Sprite statIcon;
+    public int price;
 }
