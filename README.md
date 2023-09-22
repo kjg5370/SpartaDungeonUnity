@@ -33,7 +33,8 @@
 
 |Info|Status|Inventory|Shop|
 |---|---|---|---|
-|![image](https://github.com/kjg5370/SpartaDungeonUnity/assets/105926662/34ad4e04-e394-43a6-8d66-d5046696ab72)|![image](https://github.com/kjg5370/SpartaDungeonUnity/assets/105926662/e5ea3d31-03a5-47fa-b723-aecea63e0511)|![image](https://github.com/kjg5370/SpartaDungeonUnity/assets/105926662/eb85ba7f-1412-4fee-bd45-afc1e539aacb)|![image](https://github.com/kjg5370/SpartaDungeonUnity/assets/105926662/05cd3417-87ff-424d-9af5-19919bf0da4f)|
+|![image](https://github.com/kjg5370/SpartaDungeonUnity/assets/105926662/34ad4e04-e394-43a6-8d66-d5046696ab72)|![image](https://github.com/kjg5370/SpartaDungeonUnity/assets/105926662/e5ea3d31-03a5-47fa-b723-aecea63e0511)|![image](https://github.com/kjg5370/SpartaDungeonUnity/assets/105926662/eb85ba7f-1412-4fee-bd45-afc1e539aacb)|![image](https://github.com/kjg5370/SpartaDungeonUnity/assets/105926662/ae9fdf08-c08f-4253-ade9-7e38d43da41f)|
+
 |플레이어 정보|플레이어의 스테이터스 확인 가능|플레이어가 가지고 있는 아이템 확인 가능|다양한 아이템 구매 가능 (단, 골드가 충분해야 됨.)
 
 ## 요구사항 달성도
